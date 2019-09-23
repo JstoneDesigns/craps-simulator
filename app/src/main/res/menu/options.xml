@@ -9,8 +9,8 @@
     app:showAsAction="always"/>
 
   <item
-android:id="@+id/reset"
-    android:title="@string/reset_toast"
+    android:id="@+id/reset"
+    android:title="@string/reset"
     android:icon="@drawable/ic_reset"
     app:showAsAction="never"/>
 
