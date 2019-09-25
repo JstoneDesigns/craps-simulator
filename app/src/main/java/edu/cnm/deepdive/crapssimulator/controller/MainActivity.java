@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     boolean handled = true;
     switch (item.getItemId()) {
       case R.id.play_one:
-        updateDisplay(game.play(), game.getWins(), game.getLosses(), game.getPercentage());
+        updateDisplay(game.play(), game.getWins(), game.getPlays(), game.getPercentage());
         break;
       case R.id.fast_forward:
         running = true;
