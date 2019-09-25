@@ -1,16 +1,13 @@
 package edu.cnm.deepdive.crapssimulator.controller;
 
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import edu.cnm.deepdive.craps.model.Game;
-import edu.cnm.deepdive.craps.model.Game.Roll;
 import edu.cnm.deepdive.craps.model.Game.Round;
 import edu.cnm.deepdive.crapssimulator.R;
 import edu.cnm.deepdive.crapssimulator.view.RoundAdapter;
@@ -23,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
   private RoundAdapter adapter;
   private TextView tally;
   private ListView rolls;
+  private boolean running;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +41,29 @@ public class MainActivity extends AppCompatActivity {
   }
 
   @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    super.onPrepareOptionsMenu(menu);
+    menu.findItem(R.id.play_one).setVisible(!running);
+    menu.findItem(R.id.fast_forward).setVisible(!running);
+    menu.findItem(R.id.pause).setVisible(running);
+    menu.findItem(R.id.reset).setEnabled(!running);
+    return true;
+  }
+
+  @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
     boolean handled = true;
     switch (item.getItemId()) {
-      case R.id.run:
+      case R.id.play_one:
         updateDisplay(game.play());
+        break;
+      case R.id.fast_forward:
+        running = true;
+        invalidateOptionsMenu();
+        break;
+      case R.id.pause:
+        running = false;
+        invalidateOptionsMenu(); // FIXME Move this somewhere else.
         break;
       case R.id.reset:
         resetGame();
