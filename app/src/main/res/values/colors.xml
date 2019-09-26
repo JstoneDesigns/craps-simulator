@@ -4,5 +4,5 @@
   <color name="colorPrimaryDark">#00574B</color>
   <color name="colorAccent">#D81B60</color>
   <color name="winningRound">#900000ff</color>
-  <color name="losingRound">#90FF0000</color>
+  <color name="losingRound">#ffFF0000</color>
 </resources>
